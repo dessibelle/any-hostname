@@ -1,6 +1,6 @@
 === Any Hostname ===
 
-Any Hostname all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available accross multiple domains.
+Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains.
 
 === Known Issues ===
 
@@ -23,6 +23,10 @@ any_hostname_allowed_hosts
 • Return value: $hosts (required)
 
 Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed.
+
+=== Requirements ===
+
+At least WordPress 2.7.
 
 === Version History ===
 
