@@ -1,0 +1,36 @@
+=== Any Hostname ===
+
+Any Hostname all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available accross multiple domains.
+
+=== Known Issues ===
+
+This plugin will not be able to alter the contents of constants such as WP_CONTENT_URL and WP_PLUGIN_URL as these are (quite naturally) defined before any plugins are loaded. Plugin developers should instead rely on the get_option() function, which will always return the filtered hostname.
+
+Any Hostname will also obscure the value of WordPress and Site URL settings on the Options » General settings page, due to the fact that these values are retrieved using the get_option() function. The value actually stored in WordPress' database is in fact your site's true URL, unless you hit the Save button on this page. It is therefore advised that you only change the settings on this page from your primary domain name. A fix for this might be added in a future version of this plugin.
+
+Due to a bug in the WordPress Settings API (http://core.trac.wordpress.org/ticket/9296) the plugin settings are temporarily located on the Privacy page. These settings will likely be moved to the Permalinks page in a future version.
+
+=== Filters ===
+
+any_hostname_host
+• Arguments: $host (required)
+• Return value: $host (required)
+
+Takes a host as argument, and returns a host that will be used when substituting the domain in URLs supplied by WordPress. This filter can be used to make the plugin use a specific host under certain circumstances.
+
+any_hostname_allowed_hosts
+• Arguments: $hosts (required)
+• Return value: $hosts (required)
+
+Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed.
+
+=== Version History ===
+
+1.0b1 - 9 september 2011
+• Initial Release
+
+=== Contact ===
+
+Simon Fransson
+simon@dessibelle.se
+http://dessibelle.se
