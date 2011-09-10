@@ -4,6 +4,7 @@ Donate link: http://dessibelle.se/
 Tags: hostname, host, domain, domainname, multiple, any, many, url, address
 Requires at least: 2.7
 Tested up to: 3.2.1
+Stable tag: trunk
 
 Any Hostname alters all WordPress-generated URLs according to the servers current hostname, allowing you to use a single site on multiple hostnames.
 
@@ -15,10 +16,9 @@ Any Hostname alters all WordPress-generated URLs according to the servers curren
 
 This section describes how to install the plugin and get it working.
 
-e.g.
-
 1. Upload the `any-hostname` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Optionally edit the list of allowed hosts under 'Options' » 'Privacy'
 
 == Screenshots ==
 
