@@ -1,7 +1,7 @@
 === Plugin Name ===
 Contributors: chokladzingo
 Donate link: http://dessibelle.se/
-Tags: hostname, host, domain, domainname, multiple, any, many, url, address
+Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
 Requires at least: 2.7
 Tested up to: 3.2.1
 Stable tag: trunk
@@ -10,7 +10,7 @@ Any Hostname alters all WordPress-generated URLs according to the servers curren
 
 == Description ==
 
-Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains.
+Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains or running local development servers.
 
 == Installation ==
 
@@ -26,14 +26,20 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0b2 =
+* Added host name caching, preventing a host from being evaluated against the regular expression patterns more than once per page load.
+* The plugin will nog disable host filters on the Options » General page in order to avoid obscuring the Site URL (`home`) and WordPress URL (`siteurl`) settings, potentially resulting in involuntary changing the sites default host name
+* The settings page will now display a warning when the list of allowed hosts does not include the current host.
+* **Bug fix**: Javascript needed used by the plugin on the admin pages will now also load from the filtered URL instead of `WP_PLUGIN_URL`
+
 = 1.0b1 =
 * Initial Release
 
 == Known Issues ==
 
-This plugin will not be able to alter the contents of constants such as WP_CONTENT_URL and WP_PLUGIN_URL as these are (quite naturally) defined before any plugins are loaded. Plugin developers should instead rely on the get_option() function, which will always return the filtered hostname.
+This plugin will not be able to alter the contents of constants such as `WP_CONTENT_URL` and `WP_PLUGIN_URL` as these are (quite naturally) defined before any plugins are loaded. Plugin developers should instead rely on the `get_option()` function, which will always return the filtered hostname.
 
-Any Hostname will also obscure the value of WordPress and Site URL settings on the Options » General settings page, due to the fact that these values are retrieved using the get_option() function. The value actually stored in WordPress' database is in fact your site's true URL, unless you hit the Save button on this page. It is therefore advised that you only change the settings on this page from your primary domain name. A fix for this might be added in a future version of this plugin.
+Any Hostname might also obscure the value of WordPress and Site URL settings on the Options » General settings page, due to the fact that these values are retrieved using the `get_option()` function. The values actually stored in WordPress' database is in fact your site's true URL. From 1.0b2 up the plugin will deactivate the host filters on this page, which might cause some page resources to load from the default URL (potentially being unreachable).
 
 Due to a bug in the WordPress Settings API (http://core.trac.wordpress.org/ticket/9296) the plugin settings are temporarily located on the Privacy page. These settings will likely be moved to the Permalinks page in a future version.
 
@@ -41,14 +47,14 @@ Due to a bug in the WordPress Settings API (http://core.trac.wordpress.org/ticke
 
 Any Hostname has two filters, allowing you to programatically override the filtered hostname or the list of allowed hostnames. These are described below.
 
-= any_hostname_host =
-* Arguments: $host (required)
-* Return value: $host (required)
+= `any_hostname_host` =
+* Arguments: `$host` (required)
+* Return value: `$host` (required)
 
 Takes a host as argument, and returns a host that will be used when substituting the domain in URLs supplied by WordPress. This filter can be used to make the plugin use a specific host under certain circumstances.
 
-= any_hostname_allowed_hosts =
-* Arguments: $hosts (required)
-* Return value: $hosts (required)
+= `any_hostname_allowed_hosts` =
+* Arguments: `$hosts` (required)
+* Return value: `$hosts` (required)
 
-Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed.
+Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed. Hosts should be treated as regular expression patterns.
