@@ -4,7 +4,7 @@ Plugin Name: Any Hostname
 Plugin URI: http://dessibelle.se
 Description: Alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.
 Author: Simon Fransson
-Version: 1.0b2
+Version: 1.0b3
 Author URI: http://dessibelle.se/
 */
 
@@ -42,6 +42,8 @@ class AnyHostname {
 	 */
 	
 	protected function initialize() {
+		
+		load_plugin_textdomain( 'anyhostname', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' ); 
 		
 		$this->options_page = 'privacy';
 		
@@ -184,7 +186,7 @@ class AnyHostname {
 	public function init_settings() {
 			
 		 	add_settings_section(self::SETTINGS_KEY,
-				'Any Hostname',
+				__('Any Hostname', 'anyhostname'),
 				array(&$this, 'render_settings'),
 				$this->options_page);
 
@@ -259,11 +261,11 @@ class AnyHostname {
 		$com_link = sprintf('<a href="#" id="any_hostname_dotcom_link">.*\.com</a>');
 		$regex_link = sprintf('<a href="%s">%s</a>', 'http://en.wikipedia.org/wiki/Regular_expression', 'Regular expressions');
 		
-		printf(__('One host per row. This field uses %s, which means you can also use %s for any host, or %s for all .com-hosts. It is recommended that you use the input field below when adding hosts if you are unfamiliar with regular expressions.', 'anyhostname'), $regex_link, $all_link, $com_link);
+		printf(__('One host per row. This field uses %s, which means you can also use %s to allow any host, or %s to allow all .com-hosts. It is recommended that you use the input field below when adding hosts if you are unfamiliar with regular expressions.', 'anyhostname'), $regex_link, $all_link, $com_link);
 		
 		?></p>
 		
-		<p><input id="any_hostname_add_host_field" class="regular-text" placeholder="<?php _e('example.com', 'anyhostname') ?>"> <a href="#" id="any_hostname_add_host_link" class="button"><?php _e('Add a host', 'anyhostname'); ?></a></p>
+		<p><input id="any_hostname_add_host_field" class="regular-text" placeholder="<?php _e('example.com', 'anyhostname') ?>"> <a href="#" id="any_hostname_add_host_link" class="button"><?php _e('Add host', 'anyhostname'); ?></a></p>
 		
 		<p id="any_hostname_host_warning" class="hidden"><?php printf(__("The list of allowed host does not contain the hostname that your are currently using (%s). This might result in making the site unreachable at this hostname. Are you sure you want to continue?", 'anyhostname'), $_SERVER['HTTP_HOST']); ?></p><?php
 	}
