@@ -26,6 +26,9 @@ This section describes how to install the plugin and get it working.
 
 == Changelog ==
 
+= 1.0 =
+* Added localization support and Swedish localization.
+
 = 1.0b2 =
 * Added host name caching, preventing a host from being evaluated against the regular expression patterns more than once per page load.
 * The plugin will nog disable host filters on the Options » General page in order to avoid obscuring the Site URL (`home`) and WordPress URL (`siteurl`) settings, potentially resulting in involuntary changing the sites default host name
