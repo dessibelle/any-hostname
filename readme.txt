@@ -4,7 +4,7 @@ Donate link: http://dessibelle.se/
 Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
 Requires at least: 2.7
 Tested up to: 3.2.1
-Stable tag: 0.2
+Stable tag: 1.0
 
 Any Hostname alters all WordPress-generated URLs according to the servers current hostname, allowing you to use a single site on multiple hostnames.
 
