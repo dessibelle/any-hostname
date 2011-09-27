@@ -55,7 +55,22 @@ class AnyHostname {
 		
 		// Setup functions to disable the filter on options-general.php
 		add_action('load-options-general.php', array(&$this, 'general_options_page_init'));
+		
+		add_filter('plugin_action_links', array(&$this, 'action_links'), 10, 2 );
 	}
+
+	public function action_links($links, $file) {
+		static $this_plugin;
+		if (!$this_plugin)
+			$this_plugin = plugin_basename(__FILE__);
+
+		if ($file == $this_plugin){
+		$settings_link = sprintf('<a href="options-%s.php#any-hostname">%s</a>', $this->options_page, __("Settings", "loggedin"));
+			array_unshift($links, $settings_link);
+		}
+		return $links;
+	}
+	
 	
 	protected function enable_filters() {
 		add_filter('option_home', array(&$this, 'home'), 20);
@@ -249,7 +264,7 @@ class AnyHostname {
 	public function render_settings() {
 		$intro = __("Let's you alter all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.", 'anyhostname');
 		
-		printf('<p>%s</p>', $intro);
+		printf('<p id="any-hostname">%s</p>', $intro);
 	}
 	
 	public function render_allowed_hosts_field() {
