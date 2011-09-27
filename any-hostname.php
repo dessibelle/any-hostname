@@ -4,7 +4,7 @@ Plugin Name: Any Hostname
 Plugin URI: http://dessibelle.se
 Description: Alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.
 Author: Simon Fransson
-Version: 1.0
+Version: 1.0.1
 Author URI: http://dessibelle.se/
 */
 
@@ -178,7 +178,7 @@ class AnyHostname {
 	
 	public function init_admin($hook) {
 		if( $hook == sprintf('options-%s.php', $this->options_page) ) {
-			wp_enqueue_script('any_hostname', $this->filter_url(WP_PLUGIN_URL) . '/any-hostname/js/admin.js', array('jquery'));
+			wp_enqueue_script('any_hostname', plugins_url('js/admin.js', __FILE__), array('jquery'));
 			//wp_enqueue_style('any_hostname', WP_PLUGIN_URL . '/any-hostname/css/admin.css');
 		}
 	}
