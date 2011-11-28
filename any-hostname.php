@@ -50,8 +50,8 @@ class AnyHostname {
 		$this->load_options();
 		$this->enable_filters();
 		
-		add_action('admin_enqueue_scripts', array(&$this, 'init_admin'));
-		add_action('admin_init', array(&$this, 'init_settings'));
+		add_action('admin_enqueue_scripts', array(&$this, 'init_admin'), 1);
+		add_action('admin_init', array(&$this, 'init_settings'), 1);
 		
 		// Setup functions to disable the filter on options-general.php
 		add_action('load-options-general.php', array(&$this, 'general_options_page_init'));
@@ -76,6 +76,12 @@ class AnyHostname {
 		add_filter('option_home', array(&$this, 'home'), 20);
 		add_filter('option_siteurl', array(&$this, 'siteurl'), 20);
 		add_filter('theme_root_uri', array(&$this, 'theme_root_uri'), 20);
+		
+		add_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
+		add_filter('content_url', array(&$this, 'content_url'), 20, 2);
+		add_filter('upload_dir', array(&$this, 'upload_dir'), 20);
+		
+		
 		//add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
 	}
 
@@ -83,6 +89,11 @@ class AnyHostname {
 		remove_filter('option_home', array(&$this, 'home'), 20);
 		remove_filter('option_siteurl', array(&$this, 'siteurl'), 20);
 		remove_filter('theme_root_uri', array(&$this, 'theme_root_uri'), 20);
+		
+		remove_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
+		remove_filter('content_url', array(&$this, 'content_url'), 20, 2);
+		remove_filter('upload_dir', array(&$this, 'upload_dir'), 20);
+		
 		//add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
 	}
 	
@@ -296,6 +307,22 @@ class AnyHostname {
 	
 	public function siteurl($url) {
 		return $this->home($url);
+	}
+	
+	public function plugins_url($url, $path = null, $plugin = null) {
+	    return $this->filter_url($url);
+	}
+	
+	public function content_url($url, $path = null) {
+	    return $this->filter_url($url);
+	}
+	
+	public function upload_dir($values) {
+	    
+	    $values['url'] = $this->filter_url($values['url']);
+        $values['baseurl'] = $this->filter_url($values['baseurl']);
+        
+	    return $values;
 	}
 	
 	/* This is here just for shows (might come in handy in the future) */
