@@ -81,7 +81,6 @@ class AnyHostname {
 		add_filter('content_url', array(&$this, 'content_url'), 20, 2);
 		add_filter('upload_dir', array(&$this, 'upload_dir'), 20);
 		
-		
 		//add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
 	}
 
@@ -93,7 +92,7 @@ class AnyHostname {
 		remove_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
 		remove_filter('content_url', array(&$this, 'content_url'), 20, 2);
 		remove_filter('upload_dir', array(&$this, 'upload_dir'), 20);
-		
+				
 		//add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
 	}
 	
