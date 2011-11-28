@@ -128,6 +128,7 @@ class AnyHostname {
 		
 		$parts = parse_url($url);
 		
+		
 		$host = apply_filters('any_hostname_host',  $_SERVER['HTTP_HOST']);
 		$user_pass = $port = $query = $fragment = null;
 		
@@ -140,9 +141,12 @@ class AnyHostname {
 			$user_pass .= "@";
 		}
 		
+		/* Appears this is not needed, port is part of hostname */
+		/*
 		if ($parts['port']) {
-			$port = ":" . $parts['port'];
+		    $port = ":" . $parts['port'];
 		}
+		*/
 		
 		if ($parts['query']) {
 			$query = "?" . $parts['query'];
@@ -153,7 +157,7 @@ class AnyHostname {
 		}
 				
 		$url = sprintf('%s://%s%s%s%s%s%s', $parts['scheme'], $user_pass, $host, $port, $parts['path'], $query, $fragment);
-		
+				
 		return $url;
 	}
 	
