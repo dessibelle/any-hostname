@@ -28,6 +28,7 @@ This section describes how to install the plugin and get it working.
 
 = 1.0.1 =
 * Plugin is now using `plugins_url()` instead of its own filter in order to get the correct path for its javascript.
+* Added filters for `plugins_url`, `content_url` and `upload_dir`.
 
 = 1.0 =
 * Added localization support and Swedish localization.
@@ -46,6 +47,8 @@ This section describes how to install the plugin and get it working.
 This plugin will not be able to alter the contents of constants such as `WP_CONTENT_URL` and `WP_PLUGIN_URL` as these are (quite naturally) defined before any plugins are loaded. Plugin developers should instead rely on either one of the `plugins_url()`, `content_url()` or `get_option()` functions, which will always return the filtered hostname.
 
 Any Hostname might also obscure the value of WordPress and Site URL settings on the Options » General settings page, due to the fact that these values are retrieved using the `get_option()` function. The values actually stored in WordPress' database is in fact your site's true URL. From 1.0b2 up the plugin will deactivate the host filters on this page, which might cause some page resources to load from the default URL (potentially being unreachable).
+
+Any Hostname will not work on WordPress Network sites (WPMU) due to the fact that the pages in a network install stores its URLs explicitily in the database. Any ideas on how ti circumvent this would be greatly appreciated. 
 
 Due to a bug in the WordPress Settings API (http://core.trac.wordpress.org/ticket/9296) the plugin settings are temporarily located on the Privacy page. These settings will likely be moved to the Permalinks page in a future version.
 
