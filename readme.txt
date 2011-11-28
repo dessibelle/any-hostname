@@ -29,6 +29,7 @@ This section describes how to install the plugin and get it working.
 = 1.0.1 =
 * Plugin is now using `plugins_url()` instead of its own filter in order to get the correct path for its javascript.
 * Added filters for `plugins_url`, `content_url` and `upload_dir`.
+* Fixed an issue with the URL filter for URLs that have a port number
 
 = 1.0 =
 * Added localization support and Swedish localization.
