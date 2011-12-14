@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Any Hostname\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-09-27 13:28+0100\n"
-"PO-Revision-Date: 2011-09-27 13:28+0100\n"
+"PO-Revision-Date: 2011-12-14 10:51+0100\n"
 "Last-Translator: Simon Fransson <simon@dessibelle.se>\n"
 "Language-Team:  <simon@dessibelle.se>\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgstr "Tillåtna domännamn"
 
 #: ../any-hostname.php:265
 msgid "Let's you alter all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user."
-msgstr "Låter dig anpassa samtliga adresser som genererats av WordPress enligt webbserverns nuvarande adress, så att de alltid pejar på samma domän."
+msgstr "Låter dig anpassa samtliga adresser som genererats av WordPress enligt webbserverns nuvarande adress, så att de alltid pekar på samma domännamn."
 
 #: ../any-hostname.php:279
 #, php-format
