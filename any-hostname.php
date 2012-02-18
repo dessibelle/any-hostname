@@ -65,7 +65,7 @@ class AnyHostname {
 			$this_plugin = plugin_basename(__FILE__);
 
 		if ($file == $this_plugin){
-		$settings_link = sprintf('<a href="options-%s.php#any-hostname">%s</a>', $this->options_page, __("Settings", "loggedin"));
+		$settings_link = sprintf('<a href="options-%s.php#any-hostname">%s</a>', $this->options_page, __("Settings", "anyhostname"));
 			array_unshift($links, $settings_link);
 		}
 		return $links;
