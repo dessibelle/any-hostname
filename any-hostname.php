@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Any Hostname
-Plugin URI: http://dessibelle.se
+Plugin URI: http://wordpress.org/extend/plugins/any-hostname/
 Description: Alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.
 Author: Simon Fransson
 Version: 1.0.1
