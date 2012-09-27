@@ -130,11 +130,11 @@ class AnyHostname {
 		
 		
 		$host = apply_filters('any_hostname_host',  $_SERVER['HTTP_HOST']);
-		$user_pass = $port = $query = $fragment = null;
+		$user_pass = $port = $query = $fragment = $path = $scheme = null;
 		
-		if ($parts['user']) {
+		if (isset($parts['user']) && $parts['user']) {
 			$user_pass = $parts['user'];
-			if ($parts['pass']) {
+			if (isset($parts['pass']) && $parts['pass']) {
 				$user_pass .= ":" . $parts['pass'];
 			}
 			
@@ -148,15 +148,23 @@ class AnyHostname {
 		}
 		*/
 		
-		if ($parts['query']) {
+		if (isset($parts['query']) && $parts['query']) {
 			$query = "?" . $parts['query'];
 		}
 		
-		if ($parts['fragment']) {
+		if (isset($parts['fragment']) && $parts['fragment']) {
 			$query = "#" . $parts['fragment'];
 		}
 				
-		$url = sprintf('%s://%s%s%s%s%s%s', $parts['scheme'], $user_pass, $host, $port, $parts['path'], $query, $fragment);
+		if (isset($parts['path']) && $parts['path']) {
+			$path = $parts['path'];
+		}
+
+		if (isset($parts['scheme']) && $parts['scheme']) {
+			$scheme = $parts['scheme'];
+		}
+		
+		$url = sprintf('%s://%s%s%s%s%s%s', $scheme, $user_pass, $host, $port, $path, $query, $fragment);
 				
 		return $url;
 	}
