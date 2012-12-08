@@ -74,3 +74,6 @@ Takes a host as argument, and returns a host that will be used when substituting
 * Return value: `$hosts` (required)
 
 Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed. Hosts should be treated as regular expression patterns.
+
+== Credits ==
+* Slovak localization by Branco Radenovich of [WebHostingGeeks.com](http://webhostinggeeks.com/blog/)
