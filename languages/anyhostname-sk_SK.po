@@ -1,0 +1,54 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Any Hostname\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-08 15:18+0100\n"
+"PO-Revision-Date: 2012-12-08 15:19+0100\n"
+"Last-Translator: Simon Fransson <simon@dessibelle.se>\n"
+"Language-Team:  <simon@dessibelle.se>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_x;_n\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"Language: sv_SE\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-Language: Slovak\n"
+"X-Poedit-Country: SLOVAKIA\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../any-hostname.php:68
+msgid "Settings"
+msgstr "Nastavenia"
+
+#: ../any-hostname.php:226
+msgid "Any Hostname"
+msgstr "Akékoľvek Hostname"
+
+#: ../any-hostname.php:231
+msgid "Allowed hosts"
+msgstr "Povolené hostitelia"
+
+#: ../any-hostname.php:287
+msgid "Let's you alter all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user."
+msgstr "Poďme si zmeniť všetky generované WordPress URL podľa aktuálneho hostname servery, tak, že bude vždy zodpovedajú skutočnej hostname ako zadanej užívateľom."
+
+#: ../any-hostname.php:301
+#, php-format
+msgid "One host per row. This field uses %s, which means you can also use %s to allow any host, or %s to allow all .com-hosts. It is recommended that you use the input field below when adding hosts if you are unfamiliar with regular expressions."
+msgstr "Jedného hostiteľa na riadok. Toto pole používa % s, čo znamená, môžete tiež použiť %s povoliť všetkých hostiteľov alebo %s povoliť všetky .com-hosts. Odporúča sa, že používate vstupné pole pod kedy pridávaní hostiteľom, ak ste oboznámení s regularnie výrazy."
+
+#: ../any-hostname.php:305
+msgid "example.com"
+msgstr "example.com"
+
+#: ../any-hostname.php:305
+msgid "Add host"
+msgstr "Pridať hostiteľa"
+
+#: ../any-hostname.php:307
+#, php-format
+msgid "The list of allowed host does not contain the hostname that your are currently using (%s). This might result in making the site unreachable at this hostname. Are you sure you want to continue?"
+msgstr "Zoznam povolených hostiteľa neobsahuje hostname ktoré vaše sú v súčasnosti pomocou (% s). Dôsledkom môže byť robiť stránky nedosiahnuteľný v tomto hostname. Naozaj chcete pokračovať?"
+
