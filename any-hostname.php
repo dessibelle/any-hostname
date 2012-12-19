@@ -45,7 +45,7 @@ class AnyHostname {
 
 		load_plugin_textdomain( 'anyhostname', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		$this->options_page = 'privacy';
+		$this->options_page = version_compare(get_bloginfo('version'), '3.5') < 0 ? 'privacy' : 'permalink';
 
 		$this->load_options();
 		$this->enable_filters();
@@ -127,8 +127,6 @@ class AnyHostname {
 		}
 
 		$parts = parse_url($url);
-
-
 		$host = apply_filters('any_hostname_host',  $_SERVER['HTTP_HOST']);
 		$user_pass = $port = $query = $fragment = $path = $scheme = null;
 
@@ -162,6 +160,10 @@ class AnyHostname {
 
 		if (isset($parts['scheme']) && $parts['scheme']) {
 			$scheme = $parts['scheme'];
+		}
+
+		if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) {
+		    $scheme = 'https';
 		}
 
 		$url = sprintf('%s://%s%s%s%s%s%s', $scheme, $user_pass, $host, $port, $path, $query, $fragment);
