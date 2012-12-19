@@ -18,7 +18,7 @@ This section describes how to install the plugin and get it working.
 
 1. Upload the `any-hostname` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Optionally edit the list of allowed hosts under 'Options' » 'Privacy'
+3. Optionally edit the list of allowed hosts under 'Options' » 'Permalinks' (Privacy for WordPress versions below 3.5)
 
 == Screenshots ==
 
