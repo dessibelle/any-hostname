@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Any-hostname : Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains." />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Any-hostname</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/dessibelle/any-hostname">View on GitHub</a>
+
+          <h1 id="project_title">Any-hostname</h1>
+          <h2 id="project_tagline">Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/dessibelle/any-hostname/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/dessibelle/any-hostname/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Description</h2>
+
+<p>Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains or running local development servers.</p>
+
+<h2>Installation</h2>
+
+<p>This section describes how to install the plugin and get it working.</p>
+
+<ol>
+<li>Upload the <code>any-hostname</code> directory to the <code>/wp-content/plugins/</code> directory</li>
+<li>Activate the plugin through the 'Plugins' menu in WordPress</li>
+<li>Optionally edit the list of allowed hosts under 'Options' » 'Permalinks' (Privacy for WordPress versions below 3.5)</li>
+</ol><h2>Screenshots</h2>
+
+<ol>
+<li>Any Hostname settings</li>
+</ol><h2>Changelog</h2>
+
+<h3>1.0.3</h3>
+
+<ul>
+<li>
+<strong>Settings are now located under Settings / Permalinks on WordPress 3.5 or higher</strong>, as the Privacy page has been removed.</li>
+<li>Bugfix for servers using HTTPS on redirected domains</li>
+<li>Added slovak localization by Branco Radenovich of <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
+</li>
+</ul><h3>1.0.2</h3>
+
+<ul>
+<li>Minor bugfixes and localization adjustments</li>
+</ul><h3>1.0.1</h3>
+
+<ul>
+<li>Plugin is now using <code>plugins_url()</code> instead of its own filter in order to get the correct path for its javascript.</li>
+<li>Added filters for <code>plugins_url</code>, <code>content_url</code> and <code>upload_dir</code>.</li>
+<li>Fixed an issue with the URL filter for URLs that have a port number</li>
+</ul><h3>1.0</h3>
+
+<ul>
+<li>Added localization support and Swedish localization.</li>
+</ul><h3>1.0b2</h3>
+
+<ul>
+<li>Added host name caching, preventing a host from being evaluated against the regular expression patterns more than once per page load.</li>
+<li>The plugin will nog disable host filters on the Options » General page in order to avoid obscuring the Site URL (<code>home</code>) and WordPress URL (<code>siteurl</code>) settings, potentially resulting in involuntary changing the sites default host name</li>
+<li>The settings page will now display a warning when the list of allowed hosts does not include the current host.</li>
+<li>
+<strong>Bug fix</strong>: Javascript needed used by the plugin on the admin pages will now also load from the filtered URL instead of <code>WP_PLUGIN_URL</code>
+</li>
+</ul><h3>1.0b1</h3>
+
+<ul>
+<li>Initial Release</li>
+</ul><h2>Known Issues</h2>
+
+<p>This plugin will not be able to alter the contents of constants such as <code>WP_CONTENT_URL</code> and <code>WP_PLUGIN_URL</code> as these are (quite naturally) defined before any plugins are loaded. Plugin developers should instead rely on either one of the <code>plugins_url()</code>, <code>content_url()</code> or <code>get_option()</code> functions, which will always return the filtered hostname. An example of this is the WPtouch plugin, in which case you can override WPtouch's <code>compat_get_wp_content_url</code> function, as described by this Gist: <a href="https://gist.github.com/1401269">https://gist.github.com/1401269</a>.</p>
+
+<p>Any Hostname might also obscure the value of WordPress and Site URL settings on the Options » General settings page, due to the fact that these values are retrieved using the <code>get_option()</code> function. The values actually stored in WordPress' database is in fact your site's true URL. From 1.0b2 up the plugin will deactivate the host filters on this page, which might cause some page resources to load from the default URL (potentially being unreachable).</p>
+
+<p>Any Hostname will not work on WordPress Network sites (WPMU) due to the fact that the pages in a network install stores its URLs explicitily in the database. Any ideas on how to circumvent this would be greatly appreciated.</p>
+
+<p>Due to a bug in the WordPress Settings API (<a href="http://core.trac.wordpress.org/ticket/9296">http://core.trac.wordpress.org/ticket/9296</a>) the plugin settings are located on the Privacy page on WordPress versions below 3.5. From 3.5 and up the settings can be found on the Permalinks page.</p>
+
+<h2>Filters</h2>
+
+<p>Any Hostname has two filters, allowing you to programatically override the filtered hostname or the list of allowed hostnames. These are described below.</p>
+
+<h2><code>any_hostname_host</code></h2>
+
+<ul>
+<li>Arguments: <code>$host</code> (required)</li>
+<li>Return value: <code>$host</code> (required)</li>
+</ul><p>Takes a host as argument, and returns a host that will be used when substituting the domain in URLs supplied by WordPress. This filter can be used to make the plugin use a specific host under certain circumstances.</p>
+
+<h2><code>any_hostname_allowed_hosts</code></h2>
+
+<ul>
+<li>Arguments: <code>$hosts</code> (required)</li>
+<li>Return value: <code>$hosts</code> (required)</li>
+</ul><p>Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed. Hosts should be treated as regular expression patterns.</p>
+
+<h2>Credits</h2>
+
+<ul>
+<li>Slovak localization by Branco Radenovich of <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Any-hostname maintained by <a href="https://github.com/dessibelle">dessibelle</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
