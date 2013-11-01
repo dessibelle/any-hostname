@@ -3,8 +3,8 @@ Contributors: chokladzingo
 Donate link: http://dessibelle.se/
 Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
 Requires at least: 2.7
-Tested up to: 3.5
-Stable tag: 1.0.3
+Tested up to: 3.7.1
+Stable tag: 1.0.4
 
 Any Hostname alters all WordPress-generated URLs according to the servers current hostname, allowing you to use a single site on multiple hostnames.
 
@@ -18,13 +18,16 @@ This section describes how to install the plugin and get it working.
 
 1. Upload the `any-hostname` directory to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Optionally edit the list of allowed hosts under 'Options' » 'Permalinks' (Privacy for WordPress versions below 3.5)
+3. Optionally edit the list of allowed hosts under 'Options' » 'General' (Privacy for WordPress versions below 3.5)
 
 == Screenshots ==
 
 1. Any Hostname settings
 
 == Changelog ==
+
+= 1.0.4 =
+* Due to a [WordPress bug](http://core.trac.wordpress.org/ticket/9296) plugin settings have been moved to Settings / General.
 
 = 1.0.3 =
 * **Settings are now located under Settings / Permalinks on WordPress 3.5 or higher**, as the Privacy page has been removed.
