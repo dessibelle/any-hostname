@@ -45,7 +45,7 @@ class AnyHostname {
 
 		load_plugin_textdomain( 'anyhostname', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		$this->options_page = version_compare(get_bloginfo('version'), '3.5') < 0 ? 'privacy' : 'permalink';
+		$this->options_page = version_compare(get_bloginfo('version'), '3.5') < 0 ? 'privacy' : 'general';
 
 		$this->load_options();
 		$this->enable_filters();
