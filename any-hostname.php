@@ -358,6 +358,12 @@ class AnyHostname {
 					$theme_mods['header_image_data']->thumbnail_url = $this->filter_url($theme_mods['header_image_data']->thumbnail_url);
 				}
 			}
+			if (isset($theme_mods['background_image'])) {
+				$theme_mods['background_image'] = $this->filter_url($theme_mods['background_image']);
+			}
+			if (isset($theme_mods['background_image_thumb'])) {
+				$theme_mods['background_image_thumb'] = $this->filter_url($theme_mods['background_image_thumb']);
+			}
 		}
 		return $theme_mods;
 	}
