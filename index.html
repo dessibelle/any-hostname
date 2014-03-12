@@ -31,25 +31,43 @@
     <!-- MAIN CONTENT -->
     <div id="main_content_wrap" class="outer">
       <section id="main_content" class="inner">
-        <h2>Description</h2>
+        <p>=== Plugin Name ===
+Contributors: chokladzingo, scottatron, feedmeastraycat
+Donate link: <a href="http://dessibelle.se/">http://dessibelle.se/</a>
+Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
+Requires at least: 2.7
+Tested up to: 3.8.1
+Stable tag: 1.0.5</p>
+
+<p>Any Hostname alters all WordPress-generated URLs according to the servers current hostname, allowing you to use a single site on multiple hostnames.</p>
+
+<p>== Description ==</p>
 
 <p>Any Hostname alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user, as opposed to always using the URL specified in the WordPress options. The plugin is ideal for making a site available across multiple domains or running local development servers.</p>
 
-<h2>Installation</h2>
+<p>== Installation ==</p>
 
 <p>This section describes how to install the plugin and get it working.</p>
 
 <ol>
 <li>Upload the <code>any-hostname</code> directory to the <code>/wp-content/plugins/</code> directory</li>
 <li>Activate the plugin through the 'Plugins' menu in WordPress</li>
-<li>Optionally edit the list of allowed hosts under 'Options' » 'Permalinks' (Privacy for WordPress versions below 3.5)</li>
-</ol><h2>Screenshots</h2>
+<li>Optionally edit the list of allowed hosts under 'Options' » 'General' (Privacy for WordPress versions below 3.5)</li>
+</ol><p>== Screenshots ==</p>
 
 <ol>
 <li>Any Hostname settings</li>
-</ol><h2>Changelog</h2>
+</ol><p>== Changelog ==</p>
 
-<h3>1.0.3</h3>
+<p>= 1.0.5 =</p>
+
+<ul>
+<li>Added filter to the option <code>option_theme_mods_{$current_theme_slug}</code> to filter the URL to header image and background image when using for example <code>get_header_image()</code> or <code>get_theme_mods()</code> (Thanks to <a href="http://profiles.wordpress.org/feedmeastraycat">feedmeastraycat</a>).</li>
+</ul><p>= 1.0.4 =</p>
+
+<ul>
+<li>Due to a <a href="http://core.trac.wordpress.org/ticket/9296">WordPress bug</a> plugin settings have been moved to Settings / General.</li>
+</ul><p>= 1.0.3 =</p>
 
 <ul>
 <li>
@@ -57,21 +75,21 @@
 <li>Bugfix for servers using HTTPS on redirected domains</li>
 <li>Added slovak localization by Branco Radenovich of <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
 </li>
-</ul><h3>1.0.2</h3>
+</ul><p>= 1.0.2 =</p>
 
 <ul>
 <li>Minor bugfixes and localization adjustments</li>
-</ul><h3>1.0.1</h3>
+</ul><p>= 1.0.1 =</p>
 
 <ul>
 <li>Plugin is now using <code>plugins_url()</code> instead of its own filter in order to get the correct path for its javascript.</li>
 <li>Added filters for <code>plugins_url</code>, <code>content_url</code> and <code>upload_dir</code>.</li>
 <li>Fixed an issue with the URL filter for URLs that have a port number</li>
-</ul><h3>1.0</h3>
+</ul><p>= 1.0 =</p>
 
 <ul>
 <li>Added localization support and Swedish localization.</li>
-</ul><h3>1.0b2</h3>
+</ul><p>= 1.0b2 =</p>
 
 <ul>
 <li>Added host name caching, preventing a host from being evaluated against the regular expression patterns more than once per page load.</li>
@@ -80,11 +98,11 @@
 <li>
 <strong>Bug fix</strong>: Javascript needed used by the plugin on the admin pages will now also load from the filtered URL instead of <code>WP_PLUGIN_URL</code>
 </li>
-</ul><h3>1.0b1</h3>
+</ul><p>= 1.0b1 =</p>
 
 <ul>
 <li>Initial Release</li>
-</ul><h2>Known Issues</h2>
+</ul><p>== Known Issues ==</p>
 
 <p>This plugin will not be able to alter the contents of constants such as <code>WP_CONTENT_URL</code> and <code>WP_PLUGIN_URL</code> as these are (quite naturally) defined before any plugins are loaded. Plugin developers should instead rely on either one of the <code>plugins_url()</code>, <code>content_url()</code> or <code>get_option()</code> functions, which will always return the filtered hostname. An example of this is the WPtouch plugin, in which case you can override WPtouch's <code>compat_get_wp_content_url</code> function, as described by this Gist: <a href="https://gist.github.com/1401269">https://gist.github.com/1401269</a>.</p>
 
@@ -94,25 +112,25 @@
 
 <p>Due to a bug in the WordPress Settings API (<a href="http://core.trac.wordpress.org/ticket/9296">http://core.trac.wordpress.org/ticket/9296</a>) the plugin settings are located on the Privacy page on WordPress versions below 3.5. From 3.5 and up the settings can be found on the Permalinks page.</p>
 
-<h2>Filters</h2>
+<p>== Filters ==</p>
 
 <p>Any Hostname has two filters, allowing you to programatically override the filtered hostname or the list of allowed hostnames. These are described below.</p>
 
-<h2><code>any_hostname_host</code></h2>
+<p>= <code>any_hostname_host</code> =</p>
 
 <ul>
 <li>Arguments: <code>$host</code> (required)</li>
 <li>Return value: <code>$host</code> (required)</li>
 </ul><p>Takes a host as argument, and returns a host that will be used when substituting the domain in URLs supplied by WordPress. This filter can be used to make the plugin use a specific host under certain circumstances.</p>
 
-<h2><code>any_hostname_allowed_hosts</code></h2>
+<p>= <code>any_hostname_allowed_hosts</code> =</p>
 
 <ul>
 <li>Arguments: <code>$hosts</code> (required)</li>
 <li>Return value: <code>$hosts</code> (required)</li>
 </ul><p>Takes an array of allowed hosts as argument, and returns an array of hosts to be used when checking if the user specified host should be allowed. Hosts should be treated as regular expression patterns.</p>
 
-<h2>Credits</h2>
+<p>== Credits ==</p>
 
 <ul>
 <li>Slovak localization by Branco Radenovich of <a href="http://webhostinggeeks.com/blog/">WebHostingGeeks.com</a>
