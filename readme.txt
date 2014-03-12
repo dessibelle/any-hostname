@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: chokladzingo, scottatron
+Contributors: chokladzingo, scottatron, feedmeastraycat
 Donate link: http://dessibelle.se/
 Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
 Requires at least: 2.7
@@ -27,7 +27,7 @@ This section describes how to install the plugin and get it working.
 == Changelog ==
 
 = 1.0.5 =
-* Added filter to the option "option_theme_mods_{$current_theme_slug}" to filter the URL to header image and background image when using for example get_header_image() or get_theme_mods() (Thanks to [feedmeastraycat](http://profiles.wordpress.org/feedmeastraycat))*
+* Added filter to the option `option_theme_mods_{$current_theme_slug}` to filter the URL to header image and background image when using for example `get_header_image()` or `get_theme_mods()` (Thanks to [feedmeastraycat](http://profiles.wordpress.org/feedmeastraycat)).
 
 = 1.0.4 =
 * Due to a [WordPress bug](http://core.trac.wordpress.org/ticket/9296) plugin settings have been moved to Settings / General.

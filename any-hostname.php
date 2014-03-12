@@ -338,7 +338,13 @@ class AnyHostname {
         return $values;
     }
 
-    // This function filters the option "theme_mods_{$current_theme_slug}"
+
+    /*
+     * This function filters the option "theme_mods_{$current_theme_slug}"
+     *
+     * As calues are potentially (likely) stored in the database using
+     * an absolute URL we'll have to filter this data as well.
+     */
     public function option_theme_mods_theme($theme_mods) {
         if (is_array($theme_mods)) {
             if (isset($theme_mods['header_image'])) {
@@ -361,6 +367,7 @@ class AnyHostname {
         }
         return $theme_mods;
     }
+
 
     /* This is here just for shows (might come in handy in the future) */
     /*
