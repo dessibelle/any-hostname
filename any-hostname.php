@@ -71,35 +71,29 @@ class AnyHostname {
         return $links;
     }
 
+    protected function toggle_filters($activate) {
+        $f = (bool)$activate ? 'add_filter' : 'remove_filter';
 
-    protected function enable_filters() {
-        add_filter('option_home', array(&$this, 'home'), 20);
-        add_filter('option_siteurl', array(&$this, 'siteurl'), 20);
-        add_filter('theme_root_uri', array(&$this, 'theme_root_uri'), 20);
+        $f('option_home', array(&$this, 'home'), 20);
+        $f('option_siteurl', array(&$this, 'siteurl'), 20);
+        $f('theme_root_uri', array(&$this, 'theme_root_uri'), 20);
 
-        add_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
-        add_filter('content_url', array(&$this, 'content_url'), 20, 2);
-        add_filter('upload_dir', array(&$this, 'upload_dir'), 20);
+        $f('plugins_url', array(&$this, 'plugins_url'), 20, 3);
+        $f('content_url', array(&$this, 'content_url'), 20, 2);
+        $f('upload_dir', array(&$this, 'upload_dir'), 20);
 
         $theme_slug = get_option( 'stylesheet' );
-        add_filter('option_theme_mods_'.$theme_slug, array(&$this, 'option_theme_mods_theme'), 20);
+        $f('option_theme_mods_' . $theme_slug, array(&$this, 'option_theme_mods_theme'), 20);
 
-        //add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
+        //$f('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
+    }
+
+    protected function enable_filters() {
+        self::toggle_filters(true);
     }
 
     protected function disable_filters() {
-        remove_filter('option_home', array(&$this, 'home'), 20);
-        remove_filter('option_siteurl', array(&$this, 'siteurl'), 20);
-        remove_filter('theme_root_uri', array(&$this, 'theme_root_uri'), 20);
-
-        remove_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
-        remove_filter('content_url', array(&$this, 'content_url'), 20, 2);
-        remove_filter('upload_dir', array(&$this, 'upload_dir'), 20);
-
-        $theme_slug = get_option( 'stylesheet' );
-        remove_filter('option_theme_mods_'.$theme_slug, array(&$this, 'option_theme_mods_theme'), 20);
-
-        //add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
+        self::toggle_filters(false);
     }
 
     protected function option_value_to_array($val) {
