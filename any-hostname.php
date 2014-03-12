@@ -80,6 +80,9 @@ class AnyHostname {
 		add_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
 		add_filter('content_url', array(&$this, 'content_url'), 20, 2);
 		add_filter('upload_dir', array(&$this, 'upload_dir'), 20);
+		
+		$theme_slug = get_option( 'stylesheet' );
+		add_filter('option_theme_mods_'.$theme_slug, array(&$this, 'option_theme_mods_theme'), 20);
 
 		//add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
 	}
@@ -92,6 +95,9 @@ class AnyHostname {
 		remove_filter('plugins_url', array(&$this, 'plugins_url'), 20, 3);
 		remove_filter('content_url', array(&$this, 'content_url'), 20, 2);
 		remove_filter('upload_dir', array(&$this, 'upload_dir'), 20);
+		
+		$theme_slug = get_option( 'stylesheet' );
+		remove_filter('option_theme_mods_'.$theme_slug, array(&$this, 'option_theme_mods_theme'), 20);
 
 		//add_filter('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
 	}
@@ -336,6 +342,24 @@ class AnyHostname {
         $values['baseurl'] = $this->filter_url($values['baseurl']);
 
 	    return $values;
+	}
+	
+	// This function filters the option "theme_mods_{$current_theme_slug}"
+	public function option_theme_mods_theme($theme_mods) {
+		if (is_array($theme_mods)) {
+			if (isset($theme_mods['header_image'])) {
+				$theme_mods['header_image'] = $this->filter_url($theme_mods['header_image']);
+			}
+			if (isset($theme_mods['header_image_data']) && is_object($theme_mods['header_image_data']) ) {
+				if ( isset($theme_mods['header_image_data']->url)) {
+					$theme_mods['header_image_data']->url = $this->filter_url($theme_mods['header_image_data']->url);
+				}
+				if (isset($theme_mods['header_image_data']->thumbnail_url)) {
+					$theme_mods['header_image_data']->thumbnail_url = $this->filter_url($theme_mods['header_image_data']->thumbnail_url);
+				}
+			}
+		}
+		return $theme_mods;
 	}
 
 	/* This is here just for shows (might come in handy in the future) */
