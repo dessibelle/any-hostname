@@ -28,6 +28,7 @@ This section describes how to install the plugin and get it working.
 
 = 1.0.5 =
 * Added filter to the option `option_theme_mods_{$current_theme_slug}` to filter the URL to header image and background image when using for example `get_header_image()` or `get_theme_mods()` (Thanks to [feedmeastraycat](http://profiles.wordpress.org/feedmeastraycat)).
+* Added Ukranian localization (Thanks to Michael Yunat)
 
 = 1.0.4 =
 * Due to a [WordPress bug](http://core.trac.wordpress.org/ticket/9296) plugin settings have been moved to Settings / General.
@@ -85,3 +86,4 @@ Takes an array of allowed hosts as argument, and returns an array of hosts to be
 
 == Credits ==
 * Slovak localization by Branco Radenovich of [WebHostingGeeks.com](http://webhostinggeeks.com/blog/)
+* Ukranian localization by <a href="http://getvoip.com/blog">Michael Yunat</a>

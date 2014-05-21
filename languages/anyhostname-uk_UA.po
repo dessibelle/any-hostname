@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Any Hostname\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-12-08 15:18+0100\n"
+"PO-Revision-Date: 2014-05-21 10:30+0100\n"
+"Last-Translator: Simon Fransson <simon@dessibelle.se>\n"
+"Language-Team: Michael Yunat <michael.yunat@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_x;_n\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Language: uk_UA\n"
+"X-Generator: Poedit 1.6.5\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Poedit-SearchPath-0: ..\n"
+
+#: ../any-hostname.php:68
+msgid "Settings"
+msgstr "Налаштування"
+
+#: ../any-hostname.php:226
+msgid "Any Hostname"
+msgstr "Будь-який хост"
+
+#: ../any-hostname.php:231
+msgid "Allowed hosts"
+msgstr "Дозволені хости"
+
+#: ../any-hostname.php:287
+msgid ""
+"Let's you alter all WordPress-generated URLs according to the servers "
+"current hostname, so that they will always correspond to the actual hostname "
+"as entered by the user."
+msgstr ""
+"Давайте ви змінюєте всі WordPress згенерованих адрес відповідно до серверів "
+"поточного хоста, так що вони завжди будуть відповідати реальному імені "
+"хоста, як введений користувачем."
+
+#: ../any-hostname.php:301
+#, php-format
+msgid ""
+"One host per row. This field uses %s, which means you can also use %s to "
+"allow any host, or %s to allow all .com-hosts. It is recommended that you "
+"use the input field below when adding hosts if you are unfamiliar with "
+"regular expressions."
+msgstr ""
+"Один хост для кожного рядка. Це поле використовує %s, що означає, що ви "
+"можете також використовувати %s, щоб дозволити будь-який хост або %s для "
+"дозволу всіх .com - хостів. Рекомендується використовувати в полі введення "
+"нижче при додаванні хостів, якщо ви не знайомі з регулярними виразами."
+
+#: ../any-hostname.php:305
+msgid "example.com"
+msgstr "example.com"
+
+#: ../any-hostname.php:305
+msgid "Add host"
+msgstr "Додати господаря"
+
+#: ../any-hostname.php:307
+#, php-format
+msgid ""
+"The list of allowed host does not contain the hostname that your are "
+"currently using (%s). This might result in making the site unreachable at "
+"this hostname. Are you sure you want to continue?"
+msgstr ""
+"Список дозволених хостів не містить ім&#39;я хоста, що ваш в даний час за "
+"допомогою (%s). Це може призвести до створення сайту з недостимим ім&#39;ям "
+"хоста. Ви впевнені, що хочете продовжити?"
