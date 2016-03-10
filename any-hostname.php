@@ -4,7 +4,7 @@ Plugin Name: Any Hostname
 Plugin URI: http://wordpress.org/extend/plugins/any-hostname/
 Description: Alters all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.
 Author: Simon Fransson
-Version: 1.0.5
+Version: 1.0.6
 Author URI: http://dessibelle.se/
 */
 
@@ -12,6 +12,7 @@ class AnyHostname {
 
     const SETTINGS_KEY = 'any_hostname_settings';
     const ALLOWED_HOSTS_KEY = 'any_hostname_allowed_hosts';
+    const FILTER_PRIORITY = 'any_hostname_filter_priority';
 
     protected static $instance;
     protected $options_page;
@@ -73,19 +74,20 @@ class AnyHostname {
 
     protected function toggle_filters($activate) {
         $f = (bool)$activate ? 'add_filter' : 'remove_filter';
+        $priority = get_option(self::FILTER_PRIORITY, 20);
 
-        $f('option_home', array(&$this, 'home'), 20);
-        $f('option_siteurl', array(&$this, 'siteurl'), 20);
-        $f('theme_root_uri', array(&$this, 'theme_root_uri'), 20);
+        $f('option_home', array(&$this, 'home'), $priority);
+        $f('option_siteurl', array(&$this, 'siteurl'), $priority);
+        $f('theme_root_uri', array(&$this, 'theme_root_uri'), $priority);
 
-        $f('plugins_url', array(&$this, 'plugins_url'), 20, 3);
-        $f('content_url', array(&$this, 'content_url'), 20, 2);
-        $f('upload_dir', array(&$this, 'upload_dir'), 20);
+        $f('plugins_url', array(&$this, 'plugins_url'), $priority, 3);
+        $f('content_url', array(&$this, 'content_url'), $priority, 2);
+        $f('upload_dir', array(&$this, 'upload_dir'), $priority);
 
         $theme_slug = get_option( 'stylesheet' );
-        $f('option_theme_mods_' . $theme_slug, array(&$this, 'option_theme_mods_theme'), 20);
+        $f('option_theme_mods_' . $theme_slug, array(&$this, 'option_theme_mods_theme'), $priority);
 
-        //$f('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), 20);
+        //$f('allowed_redirect_hosts', array(&$this, 'allowed_redirect_hosts'), $priority);
     }
 
     protected function enable_filters() {
@@ -235,7 +237,14 @@ class AnyHostname {
                 $this->options_page,
                 self::SETTINGS_KEY);
 
+            add_settings_field(self::FILTER_PRIORITY,
+                __('Filter priority', 'anyhostname'),
+                array(&$this, 'render_filter_priority_field'),
+                $this->options_page,
+                self::SETTINGS_KEY);
+
             register_setting($this->options_page, self::ALLOWED_HOSTS_KEY, array(&$this, 'sanitize_allowed_host_patterns'));
+            register_setting($this->options_page, self::FILTER_PRIORITY, array(&$this, 'sanitize_filter_priority_patterns'));
     }
 
     /*
@@ -285,6 +294,12 @@ class AnyHostname {
         return implode("\n", $hosts);
     }
 
+    public function sanitize_filter_priority_patterns($val) {
+        $val = abs(intval($val));
+
+        return $val ? $val : null;
+    }
+
     public function render_settings() {
         $intro = __("Let's you alter all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.", 'anyhostname');
 
@@ -307,6 +322,14 @@ class AnyHostname {
         <p><input id="any_hostname_add_host_field" class="regular-text" placeholder="<?php _e('example.com', 'anyhostname') ?>"> <a href="#" id="any_hostname_add_host_link" class="button"><?php _e('Add host', 'anyhostname'); ?></a></p>
 
         <p id="any_hostname_host_warning" class="hidden"><?php printf(__("The list of allowed host does not contain the hostname that your are currently using (%s). This might result in making the site unreachable at this hostname. Are you sure you want to continue?", 'anyhostname'), $_SERVER['HTTP_HOST']); ?></p><?php
+    }
+
+    public function render_filter_priority_field() {
+        $option = get_option(self::FILTER_PRIORITY);
+
+        ?><p><input class="code" name="<?php echo self::FILTER_PRIORITY; ?>" placeholder="20" value="<?php echo htmlentities($option); ?>"> <span class="description"><?php
+            _e('A WordPress filter priority setting. Must be a positive integer.', 'anyhostname');
+        ?></span></p><?php
     }
 
     public function theme_root_uri($theme_root_uri, $siteurl = null, $stylesheet_or_template = null) {

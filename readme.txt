@@ -3,8 +3,8 @@ Contributors: chokladzingo, scottatron, feedmeastraycat
 Donate link: http://dessibelle.se/
 Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
 Requires at least: 2.7
-Tested up to: 3.9.1
-Stable tag: 1.0.5
+Tested up to: 4.4.2
+Stable tag: 1.0.6
 
 Any Hostname alters all WordPress-generated URLs according to the servers current hostname, allowing you to use a single site on multiple hostnames.
 
@@ -25,6 +25,9 @@ This section describes how to install the plugin and get it working.
 1. Any Hostname settings
 
 == Changelog ==
+
+= 1.0.6 =
+* Added a setting for overriding the WordPress filter priority used for registering the URL overrides. Defaults to 20, but can be any value accepted by the `add_filter()`/`remove_filter()` functions. This can be helpful to solve priority conflicts with other plugins.
 
 = 1.0.5 =
 * Added filter to the option `option_theme_mods_{$current_theme_slug}` to filter the URL to header image and background image when using for example `get_header_image()` or `get_theme_mods()` (Thanks to [feedmeastraycat](http://profiles.wordpress.org/feedmeastraycat)).
