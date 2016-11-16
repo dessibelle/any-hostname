@@ -1,5 +1,5 @@
-=== Plugin Name ===
-Contributors: chokladzingo, scottatron, feedmeastraycat
+﻿=== Plugin Name ===
+Contributors: chokladzingo, scottatron, feedmeastraycat, mqrius
 Donate link: http://dessibelle.se/
 Tags: host, domain, name, hostname, domainname, multiple, any, many, url, address
 Requires at least: 2.7
