@@ -301,7 +301,7 @@ class AnyHostname {
     }
 
     public function render_settings() {
-        $intro = __("Let's you alter all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.", 'anyhostname');
+        $intro = __("Lets you alter all WordPress-generated URLs according to the servers current hostname, so that they will always correspond to the actual hostname as entered by the user.", 'anyhostname');
 
         printf('<p id="any-hostname">%s</p>', $intro);
     }
@@ -321,7 +321,7 @@ class AnyHostname {
 
         <p><input id="any_hostname_add_host_field" class="regular-text" placeholder="<?php _e('example.com', 'anyhostname') ?>"> <a href="#" id="any_hostname_add_host_link" class="button"><?php _e('Add host', 'anyhostname'); ?></a></p>
 
-        <p id="any_hostname_host_warning" class="hidden"><?php printf(__("The list of allowed host does not contain the hostname that your are currently using (%s). This might result in making the site unreachable at this hostname. Are you sure you want to continue?", 'anyhostname'), $_SERVER['HTTP_HOST']); ?></p><?php
+        <p id="any_hostname_host_warning" class="hidden"><?php printf(__("The list of allowed hosts does not contain the hostname that your are currently using (%s). This might result in making the site unreachable at this hostname. Are you sure you want to continue?", 'anyhostname'), $_SERVER['HTTP_HOST']); ?></p><?php
     }
 
     public function render_filter_priority_field() {
